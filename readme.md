@@ -1,30 +1,28 @@
 # Minimalist Slides
 
-这是一个基于LaTeX Beamer的简约风格幻灯片模板，内置东南大学主题。用户可以通过简单的修改，轻松更换为其他学校或单位的主题。
+This minimalist slide template, built on LaTeX Beamer, features a Southeast University theme by default. Users can effortlessly tailor it to reflect the branding of other institutions with minimal adjustments.
 
-## 特性
+## Features
 
-- 基于 `ctexbeamer`，适合中文环境
-- 简约清新的设计风格，适用于学术汇报、答辩等场合
-- 支持插入图片、表格、公式、代码块等
-- 可自定义主题色
+- Clean and elegant design, well-suited for academic presentations, thesis defenses, and similar professional settings
+- Seamless integration of images, tables, equations, and code blocks
+- Fully customizable theme color options
 
-## 示例
+## Example
 
-- 以下为默认的东南大学主题样式：
-
-<p align="center">
-  <img alt="Light" src="imgs/template1_1.jpg" width="45%">
-  <img alt="Dark" src="imgs/template1_2.jpg" width="45%">
-</p>
-
-- 通过修改logo和主题颜色，可创建符合百度风格的模板：
+- Shown below are the default Southeast University theme styles:
 
 <p align="center">
-  <img alt="Light" src="imgs/template2_1.jpg" width="45%">
-  <img alt="Dark" src="imgs/template2_2.jpg" width="45%">
+  <img src="imgs/main_page-0001.jpg" width="45%" style="border: 1px solid black;">
+  <img src="imgs/main_page-0002.jpg" width="45%" style="border: 1px solid black;">
+  <img src="imgs/main_page-0003.jpg" width="45%" style="border: 1px solid black;">
+  <img src="imgs/main_page-0004.jpg" width="45%" style="border: 1px solid black;">
+  <img src="imgs/main_page-0005.jpg" width="45%" style="border: 1px solid black;">
+  <img src="imgs/main_page-0011.jpg" width="45%" style="border: 1px solid black;">
+  <img src="imgs/main_page-0013.jpg" width="45%" style="border: 1px solid black;">
+  <img src="imgs/main_page-0014.jpg" width="45%" style="border: 1px solid black;">
 </p>
 
-## 使用方法和更多细节
+## Usage Instructions & Additional Information
 
-详见`main.pdf`文件。
+For complete usage guidelines and more details, please consult the `main.pdf` file.
