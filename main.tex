@@ -1,10 +1,13 @@
-\documentclass[8pt]{ctexbeamer}
+\documentclass[8pt]{beamer}
 
 \input{init.tex}
 
+% \usepackage{fontspec}
+% \setsansfont{Candara}
+
 \begin{document}
 
-\kaishu
+\sf
 
 % 这里设置了两种封面，可以根据需要选择其中一种
 
@@ -12,12 +15,12 @@
 
     \centering
     \vspace{13mm}
-    \titlecolorbox{简约风格汇报答辩模板}
+    \titlecolorbox{A Minimalist-style Slides}
 
     \vspace{7mm}
     \begin{tabular}{>{\color{themecolor}}r@{\hspace{3pt}}l}
-        学生 & 张三 \\
-        指导老师 & 李四 \\
+        Presenter & Zhang San \\
+        Supervisor & Li Si \\
     \end{tabular}
 
     \vspace{4mm} 
@@ -30,7 +33,7 @@
     \setlength{\parskip}{0.2em}
     \vspace{13mm}
     {\color{themecolor}\huge
-    简约风格汇报答辩模板
+    A Minimalist-style Slides
     }
 
     \begin{tikzpicture}
@@ -40,8 +43,8 @@
 
     \vspace{7mm}
     \begin{tabular}{>{\color{themecolor}}r@{\hspace{3pt}}l}
-        学生 & 张三 \\
-        指导老师 & 李四 \\
+        Presenter & Zhang San \\
+        Supervisor & Li Si \\
     \end{tabular}
 
     \vspace{4mm} 
@@ -51,135 +54,135 @@
 
 
 \begin{frame}
-    \frametitle{目录}
+    \frametitle{Outline}
     \setlength{\parskip}{0.2em}
     \tableofcontents
 \end{frame}
 
-\section{模板介绍}
+\section{Template Introduction}
 
 \makesection
 
-\subsection{模板介绍及文件结构}
+\subsection{Overview and File Structure}
 
 \begin{frame}{\insertsection}{\insertsubsection}
 
-    本模板基于\lstinline|ctexbeamer|，采用了清新简约的设计风格，适合用于学术汇报、答辩等场合。该模板的文件结构如下：
+    This presentation template is developed based on \lstinline|ctexbeamer| and features a fresh, minimalist design, making it well-suited for academic talks, thesis defenses, and related occasions. Its file structure is organized as follows:
 
     \begin{table}
         \renewcommand{\arraystretch}{1.5}
+        \centering
         \begin{tabular}{ll}
             \toprule
-            文件路径 & 说明 \\
+            File Path & Description \\
             \midrule
-            \lstinline|main.tex| & 主文件，包含了整个文档的结构和内容 \\
-            \lstinline|init.tex| & 初始化文件，用于导入\lstinline|init/|文件夹中用于初始化的内容 \\
-            \lstinline|reference.bib| & \lstinline|.bib|文件，用于放置bib格式的参考文献 \\
-            \lstinline|init/cmds.tex| & 用于定义可能用到的命令 \\
-            \lstinline|init/code.tex| & 用于定义不同风格的代码格式 \\
-            \lstinline|init/color.tex| & 用于定义可能用到的颜色 \\
-            \lstinline|init/format.tex| & 用于定义文档若干元素的格式，包括标题、副标题等 \\
-            \lstinline|init/pkg.tex| & 用于导入所需要的宏包 \\
+            \lstinline|main.tex| & The main file that defines the overall structure and content \\
+            \lstinline|init.tex| & The initialization script that loads components \\
+            \lstinline|reference.bib| & A BibTeX file containing references \\
+            \lstinline|init/cmds.tex| & Defines reusable custom commands \\
+            \lstinline|init/code.tex| & Configures the styling for source code blocks \\
+            \lstinline|init/color.tex| & Defines the color palette used in the slides \\
+            \lstinline|init/format.tex| & Specifies formatting settings for elements \\
+            \lstinline|init/pkg.tex| & Loads all necessary LaTeX packages \\
             \bottomrule
         \end{tabular}
     \end{table}
 
 \end{frame}
 
-\section{准备工作}
+\section{Preparation Work}
 
 \makesection
 
-\subsection{模板使用准备工作}
+\subsection{Template Setup Instructions}
 
 \begin{frame}{\insertsection}{\insertsubsection}
-    \begin{block}{模板使用准备工作}
-        如果您需要使用东南大学主题，可以跳过该部分，直接使用改模板。如果您需要使用其他学校或单位的主题，可以参考本节的内容进行修改。
+    \begin{block}{Template Setup Instructions}
+        If you are using the Southeast University theme, you can skip this section and directly apply the provided template. For other universities or institutions, please follow the instructions below to customize the template:
         \begin{enumerate}
-            \item 首先将您的学校和单位的logo放置在路径\lstinline|figs/logo.jpg|下。
-            \item 然后，修改\lstinline|init/color.tex|中的\lstinline|themecolor|为您的学校或单位的主题色，并将\lstinline|themered|修改为与主题色相搭配的强调色。
-            \item 这样，模板就设置好啦！
+            \item Save your institution’s logo at \lstinline|figs/logo.jpg|.
+            \item In \lstinline|init/color.tex|, set \lstinline|themecolor| to your institution’s official theme color, and adjust \lstinline|themered| to a complementary accent color.
+            \item Once these steps are completed, your template is ready to go!
         \end{enumerate}
     \end{block}
 \end{frame}
 
-\section{模板使用}
+\section{Using the Template}
 
 \makesection
 
-\subsection{小节和目录}
+\subsection{Sections and Table of Contents}
 
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
 
-    \begin{block}{小节的使用}
+    \begin{block}{Creating Sections}
         \begin{enumerate}
-            \item 使用\lstinline|\section{}|和\lstinline|\subsection{}|命令可以生成小节和子小节。
-            \item 在小节后使用\lstinline|\makesection[width]|命令可以生成小节的封面，其中\lstinline|width|表示小节封面中横线的长度，默认值为0.4。
+            \item Use the \lstinline|\section{}| and \lstinline|\subsection{}| to define sections and subsections.
+            \item After defining a section, \lstinline|\makesection[width]| can be used to generate a cover. The optional \lstinline|width| sets the length of the horizontal line; the default value is 0.4.
             \begin{lstlisting}[style=latex]
-\section{直接使用}
-\subsection{小节和目录}
+\section{Direct Usage}
+\subsection{Sections and Table of Contents}
 \makesection
             \end{lstlisting}
-
         \end{enumerate}
     \end{block}
-
-    \begin{block}{目录的使用}
+    \vspace{-3mm}
+    \begin{block}{Generating a Table of Contents}
         \begin{enumerate}
-            \item 使用下面命令可以生成目录页。
+            \item The following code creates a slide containing the table of contents.
             \begin{lstlisting}[style=latex]
 \begin{frame}
-    \frametitle{目录}
-    \setlength{\parskip}{0.2em} % 设置段间距
+    \frametitle{Table of Contents}
+    \setlength{\parskip}{0.2em} % Adjust line spacing between paragraphs
     \tableofcontents
 \end(*@@*){frame}
             \end{lstlisting}
         \end{enumerate}
-
     \end{block}
 
 \end{frame}
 
-\subsection{页面和块}
+
+\subsection{Pages and Blocks}
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
-    \begin{block}{页面的使用}
+    \begin{block}{Using Pages}
         \begin{enumerate}
-            \item 使用下面命令可以生成一个页面，其中标题和副标题分别为小节的标题和子小节的标题。
+            \item The following command generates a slide where the main and subheadings are automatically set to the current section and subsection titles:
             \begin{lstlisting}[style=latex]
 \begin{frame}{\insertsection}{\insertsubsection}
-    % 页面内容
-\end(*@@*){frame}
+    % Slide content
+\(*@@*)end{frame}
             \end{lstlisting}
-            \item 也可以使用\lstinline|\begin{frame}{title}{subtitle}|来自定义标题和副标题的内容，其中副标题可以省略。当标题和副标题都省略时，页面不会显示页眉。
-            \item 当然，也可以使用\lstinline|\begin{frame}[plain]|来生成一个无页眉页脚的页面，一般用于封面页和结尾页。
-            \item 使用\lstinline|\begin{frame}[fragile]{title}{subtitle}|，当该页面需要插入代码块时。
+            \item You can also define custom headings with \lstinline|\begin{frame}{title}{subtitle}|. The subtitle is optional. If both fields are left blank, no header will appear on the slide.
+            \item For slides without a header or footer—commonly used for cover or closing slides—use \lstinline|\begin{frame}[plain]|.
+            \item Use \lstinline|\begin{frame}[fragile]{title}{subtitle}| when the slide includes code blocks.
         \end{enumerate}
     \end{block}
 \end{frame}
 
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
-    \begin{block}{块的使用}
+    \begin{block}{Using Custom Blocks}
         \begin{enumerate}
-            \item 使用下面命令可以生成一个块。
+            \item A block can be created using the following command:
             \begin{lstlisting}[style=latex]
 \begin{block}{title}
-    % 块内容
-\end(*@@*){block}
+    % block content
+\end{block}
             \end{lstlisting}
-            \item 在块的前后使用\lstinline|\colorlet{themecolor}{somecolor}|命令可以修改块的主题颜色。
+            \item To customize the block's theme color, use the \lstinline|\colorlet{themecolor}{somecolor}| command before and after the block.
         \end{enumerate}
     \end{block}
 
     \colorlet{themecolor}{themered}
-    \begin{block}{红色的块}
+    \begin{block}{Block with Red Theme}
         \begin{enumerate}
-            \item 这是一个主题颜色为红色的块。
-            \item 下面是使用红色的块的代码。
+            \item This is a block with its theme color set to red.
+            \item The following snippet demonstrates how to define such a block.
             \begin{lstlisting}[style=latex]
 \colorlet{themecolor}{themered}
 \begin{block}{title}
-    % 块内容
-\end(*@@*){block}
+    % block content
+\end{block}
 \colorlet{themecolor}{themegreen}
             \end{lstlisting}
         \end{enumerate}
@@ -188,100 +191,101 @@
 
 \end{frame}
 
-\subsection{列表}
+\subsection{Lists}
 
 \begin{frame}{\insertsection}{\insertsubsection}
 
-    \begin{block}{列表的使用}
+    \begin{block}{Using Lists}
         \begin{enumerate}
-            \item 使用\lstinline|itemize|环境可以生成无序列表。
-            \item 使用\lstinline|enumerate|环境可以生成有序列表。
+            \item Use the \lstinline|itemize| environment to create bulleted (unordered) lists.
+            \item Use the \lstinline|enumerate| environment to create numbered (ordered) lists.
         \end{enumerate}
     \end{block}
 
-    \begin{block}{列表示例}
+    \begin{block}{List Examples}
 
         \begin{itemize}
-            \item 这是一个无序列表。
-            \item 这是一个无序列表。
+            \item Example of a bulleted list.
+            \item Another item in the bulleted list.
             \begin{itemize}
-                \item 这是一个无序列表的子列表。
+                \item A nested item in the bulleted list.
                 \begin{itemize}
-                    \item 这是一个无序列表的子列表的子列表。
-                    \item 这是一个无序列表的子列表的子列表。
+                    \item A second-level nested item in the bulleted list.
+                    \item Another second-level nested item in the bulleted list.
                 \end{itemize}
-                \item 这是一个无序列表的子列表。
+                \item Another nested item in the bulleted list.
             \end{itemize}
         \end{itemize}
 
         \begin{enumerate}
-            \item 这是一个有序列表。
-            \item 这是一个有序列表。
+            \item Example of a numbered list.
+            \item Another item in the numbered list.
             \begin{enumerate}
-                \item 这是一个有序列表的子列表。
+                \item A nested item in the numbered list.
                 \begin{enumerate}
-                    \item 这是一个有序列表的子列表的子列表。
-                    \item 这是一个有序列表的子列表的子列表。
+                    \item A second-level nested item in the numbered list.
+                    \item Another second-level nested item in the numbered list.
                 \end{enumerate}
-                \item 这是一个有序列表的子列表。
+                \item Another nested item in the numbered list.
             \end{enumerate}
         \end{enumerate}
-
 
     \end{block}
 
 \end{frame}
 
-\subsection{强调和注释}
+\subsection{Emphasis and Annotations}
 
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
 
-    下面是一些强调和注释的使用方法\footnote{使用\lstinline|\footnote{}|可以插入脚注}。
+    The table below presents various commands used for textual emphasis and annotation. Footnotes can be added using the command \lstinline|\footnote{}|\footnote{This is a footnote.}.
     \begin{table}
+        \small
         \renewcommand{\arraystretch}{1.5}
-        \setlength{\tabcolsep}{3mm}
+        \setlength{\tabcolsep}{2mm}
         \begin{tabular}{llll}
             \toprule
-            命令 & 效果 & 命令 & 效果\\
+            Command & Output & Command & Output\\
             \midrule
-            \lstinline|\textsf{}| & \textsf{无衬线} & \lstinline|\textbf{}| & \textbf{加粗} \\
-            \lstinline|\textrm{}| & \textrm{衬线} & \lstinline|\texttt{}| & \texttt{等宽} \\
-            \lstinline|\uline{}| & \uline{下划线} & \lstinline|\uwave{}| & \uwave{波浪线} \\
-            \lstinline|\sout{}| & \sout{删除线} & \lstinline|\emph{}| & \emph{强调} \\
-            \lstinline|\highlight{}| & \highlight{高亮} & \lstinline|\ulhighlight{}| & \ulhighlight{下划线高亮} \\
-            \lstinline|\stronghighlight{}| & \highlight{高亮} & \lstinline|\ulhighlight{}| & \ulstronghighlight{下划线强调高亮} \\
+            \lstinline|\textsf{}| & \textsf{Sans-serif} & \lstinline|\textbf{}| & \textbf{Bold} \\
+            \lstinline|\textrm{}| & \textrm{Serif} & \lstinline|\texttt{}| & \texttt{Monospaced} \\
+            \lstinline|\uline{}| & \uline{Underline} & \lstinline|\uwave{}| & \uwave{Wavy underline} \\
+            \lstinline|\sout{}| & \sout{Strikethrough} & \lstinline|\emph{}| & \emph{Italic emphasis} \\
+            \lstinline|\highlight{}| & \highlight{Highlighted text} & \lstinline|\ulhighlight{}| & \ulhighlight{Underlined highlight} \\
+            \lstinline|\stronghighlight{}| & \highlight{Strong highlight} & \lstinline|\ulhighlight{}| & \ulstronghighlight{Underlined strong highlight} \\
             \bottomrule
         \end{tabular}
     \end{table}
     \begin{myquote}
-        这是一个引用，但是我习惯用它来表示注释。
+        This is a quotation environment, but I often use it as a note or aside.
     \end{myquote}
 
     \begin{callout}{Callout}
-        这里可以用来解释演示文稿中出现的名词，或与主题关系不大的其他延伸内容。为了显得这个块好看，所以我这里需要多打一些字。
+        This block can be used to clarify terms introduced in the slides or provide peripheral information that complements the main content. It has been filled with extra text to enhance its visual appeal.
     \end{callout}
 
 \end{frame}
 
-\subsection{图片和表格}
+
+\subsection{Figures and Tables}
 
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
 
-    \begin{block}{图片的使用}
+    \begin{block}{Including Figures}
         \begin{enumerate}
-            \item 插入图片的命令如下。
+            \item To include a figure, use the following command.
             \begin{lstlisting}[style=latex]
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{example.jpg}
-    \caption{图片示例}
+    \caption{An Example Figure}
     \label{fig:example}
-\end(*@@*){figure}
+\end{figure}
             \end{lstlisting}
             \begin{figure}
                 \centering
                 \includegraphics[width=0.5\textwidth]{figs/example.jpg}
-                \caption{图片示例}
+                \caption{An Example Figure}
                 \label{fig:example}
             \end{figure}
         \end{enumerate}
@@ -289,31 +293,32 @@
 
 \end{frame}
 
+
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
 
-    \begin{block}{表格的使用}
+    \begin{block}{Inserting Tables}
         \begin{enumerate}
-            \item 插入表格的命令如下。
+            \item Use the following command to insert a table.
         \begin{lstlisting}[style=latex]
 \begin{table}
     \centering
-    \caption{表格示例}\label{tab:example}
+    \caption{Sample Table}\label{tab:example}
     \begin{tabular}{cc}
         \toprule
-        % 表头
+        % Header
         \midrule
-        % 表格内容
+        % Table Data
         \bottomrule
     \end{tabular}
-\end(*@@*){table}
+\end{table}
         \end{lstlisting}
 
         \begin{table}
             \centering
-            \caption{表格示例}\label{tab:example}
+            \caption{Sample Table}\label{tab:example}
             \begin{tabular}{cccc}
                 \toprule
-                第一列 & 第二列 & 第三列 & 第四列 \\
+                Column 1 & Column 2 & Column 3 & Column 4 \\
                 \midrule
                 1 & 2 & 3 & 4 \\
                 5 & 6 & 7 & 8 \\
@@ -324,13 +329,14 @@
     \end{block}
 \end{frame}
 
-\subsection{公式和代码块}
+
+\subsection{Equations and Code Blocks}
 
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
     \label{frame:eq_and_code}
 
-    \begin{block}{公式的使用}
-        插入公式的效果如下。
+    \begin{block}{Using Equations}
+        The following demonstrates how to insert an equation.
         \begin{equation}
             \label{eq:example}
             i\hbar\frac{\partial \psi}{\partial t}
@@ -342,66 +348,69 @@
         \end{equation}
     \end{block}
 
-    \begin{block}{代码块的使用}
+    \begin{block}{Using Code Blocks}
         \begin{enumerate}
-            \item 使用\lstinline|\lstlisting{}|命令可以插入行内代码。
-            \item 插入行间代码的命令和效果如下。
+            \item Use the \lstinline|\lstlisting{}| command to insert inline code.
+            \item The syntax and effect of inserting a code block are shown below.
             \begin{lstlisting}[style=latex]
 \begin{lstlisting}[style=latex]
-% 代码块的内容
+% Content of the code block
 \end(*@@*){lstlisting}
             \end{lstlisting}
         \end{enumerate}
     \end{block}
 \end{frame}
 
-\subsection{参考文献和引用}
+
+\subsection{References and Cross-Referencing}
 
 \begin{frame}[fragile]{\insertsection}{\insertsubsection}
 
-    \begin{block}{参考文献的使用}
+    \begin{block}{Managing References}
         \begin{enumerate}
-            \item 首先将参考文献的信息保存在\lstinline|reference.bib|文件中。
-            \item 使用\lstinline|\footfullcite{}|命令可以插入脚注引用。
-            \item 例如，Kopka等人写了一本关于\LaTeX{}的书\footfullcite{kopka2003guide}。
+            \item First, store your bibliographic data in the \lstinline|reference.bib| file.
+            \item Use the \lstinline|\footfullcite{}| command to generate footnote-style citations.
+            \item For example, Kopka et al. authored a well-known book on \LaTeX{}\footfullcite{kopka2003guide}.
         \end{enumerate}
     \end{block}
 
-    \begin{block}{引用的使用}
+    \begin{block}{Using Cross-References}
         \begin{enumerate}
-            \item 使用\lstinline|\ref{}|命令可以引用图片、表格和公式。
-            \item 使用\lstinline|\pageref{}|命令可以引用页面。
-            \item 例如，我可以引用第\pageref{frame:eq_and_code}页的公式(\ref{eq:example})。
+            \item To reference figures, tables, or equations, use the \lstinline|\ref{}| command.
+            \item To cite the page number, use the \lstinline|\pageref{}| command.
+            \item For instance, the equation on page \pageref{frame:eq_and_code} can be cited as equation (\ref{eq:example}).
         \end{enumerate}
     \end{block}
 
 \end{frame}
 
-\section{总结}
 
-\subsection{总结}
+\section{Conclusion}
+
+\subsection{Conclusion}
 
 \makesection
 
 \begin{frame}{\insertsection}{\insertsubsection}
-    \begin{block}{总结}
+    \begin{block}{Conclusion}
         \begin{enumerate}
-            \item 我们提供了一个简单的\LaTeX{}模板。
-            \item 该模板包含了常用的功能，如插入图片、表格、公式和代码块等。
-            \item 没了！
+            \item We present a streamlined \LaTeX{} template.
+            \item The template integrates essential features such as image, table, equation, and code block insertion.
+            \item That concludes our presentation.
         \end{enumerate}
     \end{block}
 
-    \begin{block}{致谢}
+    \begin{block}{Acknowledgements}
         \begin{enumerate}
-            \item 感谢大家的支持！
-            \item 本模板参考了elegant sildes\footnote{https://www.overleaf.com/latex/templates/elegant-slides/yfqyhpprvdmg}模板。
+            \item We sincerely thank everyone for their support.
+            \item This template is based on the elegant slides\footnote{\url{https://www.overleaf.com/latex/templates/elegant-slides/yfqyhpprvdmg}} template.
         \end{enumerate}
     \end{block}
 \end{frame}
 
-\begin{frame}{参考文献}
+\begin{frame}{References}
     \printbibliography
 \end{frame}
+
 
 \end{document}
