@@ -13,14 +13,14 @@ This minimalist slide template, built on LaTeX Beamer, features a Southeast Univ
 - Shown below are the default Southeast University theme styles:
 
 <p align="center">
-  <img src="imgs/main_page-0001.jpg" width="45%" style="border: 1px solid black;"/>
-  <img src="imgs/main_page-0002.jpg" width="45%" style="border: 1px solid black;"/>
-  <img src="imgs/main_page-0003.jpg" width="45%" style="border: 1px solid black;"/>
-  <img src="imgs/main_page-0004.jpg" width="45%" style="border: 1px solid black;"/>
-  <img src="imgs/main_page-0005.jpg" width="45%" style="border: 1px solid black;"/>
-  <img src="imgs/main_page-0011.jpg" width="45%" style="border: 1px solid black;"/>
-  <img src="imgs/main_page-0013.jpg" width="45%" style="border: 1px solid black;"/>
-  <img src="imgs/main_page-0014.jpg" width="45%" style="border: 1px solid black;"/>
+  <img src="imgs/main_page-0001.jpg" width="45%">
+  <img src="imgs/main_page-0002.jpg" width="45%">
+  <img src="imgs/main_page-0003.jpg" width="45%">
+  <img src="imgs/main_page-0004.jpg" width="45%">
+  <img src="imgs/main_page-0005.jpg" width="45%">
+  <img src="imgs/main_page-0011.jpg" width="45%">
+  <img src="imgs/main_page-0013.jpg" width="45%">
+  <img src="imgs/main_page-0014.jpg" width="45%">
 </p>
 
 ## Usage Instructions & Additional Information
