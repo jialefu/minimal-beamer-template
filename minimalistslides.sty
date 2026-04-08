@@ -81,9 +81,16 @@
 \providecommand{\sectionrulewidth}{0.6}
 
 % Typography. Use a TeX Live font for better portability across systems.
-\setsansfont{TeX Gyre Heros}
+\IfFontExistsTF{Calibri}{
+  \setsansfont{Calibri}
+}{
+  \setsansfont{TeX Gyre Heros}
+}
 \AtBeginDocument{%
   \ifms@chinese
+    \IfFontExistsTF{KaiTi}{
+      \setCJKmainfont[BoldFont=SimHei]{KaiTi}
+    }{}
   \else
     \sffamily
   \fi
