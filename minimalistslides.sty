@@ -1,0 +1,299 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{minimalistslides}[2026/04/08 Minimalist Slides Beamer style]
+
+\RequirePackage{iftex}
+\ifXeTeX\else
+  \PackageError{minimalistslides}{This package requires XeLaTeX}{Compile the document with XeLaTeX or latexmk -xelatex.}
+\fi
+
+\newif\ifms@chinese
+\DeclareOption{english}{\ms@chinesefalse}
+\DeclareOption{chinese}{\ms@chinesetrue}
+\ExecuteOptions{english}
+\ProcessOptions\relax
+
+\RequirePackage{etoolbox}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage[export]{adjustbox}
+\RequirePackage{stackengine}
+\RequirePackage{pifont}
+\RequirePackage[framemethod=TikZ]{mdframed}
+\RequirePackage{amsmath}
+\RequirePackage{array}
+\RequirePackage{listings}
+\RequirePackage{tcolorbox}
+\RequirePackage[backend=bibtex, style=numeric]{biblatex}
+\RequirePackage{bm}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{ulem}
+\RequirePackage{fontawesome5}
+\RequirePackage{fontspec}
+
+% Theme identity defaults.
+\newcommand{\themelogopath}{figs/logo.jpg}
+\newcommand{\themename}{Southeast University}
+\newcommand{\setthemelogo}[1]{\renewcommand{\themelogopath}{#1}}
+\newcommand{\setthemename}[1]{\renewcommand{\themename}{#1}}
+
+% Theme palette defaults.
+\definecolor{themegreen}{RGB}{48,95,33}
+\definecolor{themered}{RGB}{95,33,48}
+\colorlet{darkgray}{black!70}
+\colorlet{stronghighlightcolor}{themered!150!black}
+\colorlet{themecolor}{themegreen}
+
+\newcommand{\setthemeprimaryrgb}[3]{%
+  \definecolor{themegreen}{RGB}{#1,#2,#3}%
+  \colorlet{themecolor}{themegreen}%
+}
+
+\newcommand{\setthemeaccentrgb}[3]{%
+  \definecolor{themered}{RGB}{#1,#2,#3}%
+  \colorlet{stronghighlightcolor}{themered!150!black}%
+}
+
+% Metadata defaults.
+\ifms@chinese
+  \providecommand{\presentationtitle}{简约风格汇报答辩模板}
+  \providecommand{\presentationauthorlabel}{学生}
+  \providecommand{\presentationauthor}{张三}
+  \providecommand{\presentationadvisorlabel}{指导老师}
+  \providecommand{\presentationadvisor}{李四}
+  \providecommand{\presentationinstitutionlabel}{单位}
+  \providecommand{\presentationinstitution}{\themename}
+  \providecommand{\presentationdate}{\today}
+  \newcommand{\minimalistslidescallouttitlefont}{\mdseries}
+\else
+  \providecommand{\presentationtitle}{Minimalist Academic Slides}
+  \providecommand{\presentationauthorlabel}{Presenter}
+  \providecommand{\presentationauthor}{Zhang San}
+  \providecommand{\presentationadvisorlabel}{Supervisor}
+  \providecommand{\presentationadvisor}{Li Si}
+  \providecommand{\presentationinstitutionlabel}{Institution}
+  \providecommand{\presentationinstitution}{\themename}
+  \providecommand{\presentationdate}{\today}
+  \newcommand{\minimalistslidescallouttitlefont}{\bfseries}
+\fi
+
+\providecommand{\sectionrulewidth}{0.6}
+
+% Typography. Use a TeX Live font for better portability across systems.
+\setsansfont{TeX Gyre Heros}
+\AtBeginDocument{%
+  \ifms@chinese
+  \else
+    \sffamily
+  \fi
+}
+
+% Reusable environments and listing styles.
+\newmdenv[
+    hidealllines=true,
+    leftline=true,
+    linewidth=1pt,
+    linecolor=darkgray,
+    fontcolor=darkgray,
+    innertopmargin=1pt,
+    innerbottommargin=1pt,
+    font=\normalsize,
+]{myquote}
+
+\lstset{
+    basicstyle=\ttfamily\color{stronghighlightcolor},
+}
+
+\lstdefinestyle{python}{
+    language=Python,
+    basicstyle=\normalsize\ttfamily,
+    keywordstyle=\color{themecolor},
+    stringstyle=\color{themered!150!black},
+    commentstyle=\color{black!50},
+    showstringspaces=false,
+    backgroundcolor=\color{white},
+    frame=single,
+    framerule=0.25pt,
+    framesep=3pt,
+    rulecolor=\color{themecolor},
+    numbers=left,
+    numberstyle=\tiny\color{darkgray},
+    numbersep=5pt,
+    breaklines=true,
+    escapeinside={(*@}{@*)}
+}
+
+\lstdefinestyle{latex}{
+    language=[LaTeX]TeX,
+    basicstyle=\normalsize\ttfamily,
+    keywordstyle=\color{themecolor},
+    stringstyle=\color{themered!150!black},
+    commentstyle=\color{black!50},
+    showstringspaces=false,
+    backgroundcolor=\color{white},
+    frame=single,
+    framerule=0.25pt,
+    framesep=3pt,
+    rulecolor=\color{themecolor},
+    numbers=left,
+    numberstyle=\tiny\color{darkgray},
+    numbersep=5pt,
+    breaklines=true,
+    escapeinside={(*@}{@*)}
+}
+
+% Core Beamer templates.
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[page number]
+\setbeamertemplate{section in toc}[sections numbered]
+
+% List markers.
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}{$\circ$}
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamertemplate{enumerate subitem}{\alph{enumii}.}
+\setbeamertemplate{enumerate subsubitem}{\roman{enumiii}.}
+
+% Colors.
+\setbeamercolor{frametitle}{bg=, fg=themecolor}
+\setbeamercolor{block title}{bg=themecolor!8, fg=themecolor}
+\setbeamercolor{description item}{fg=themecolor}
+\setbeamercolor{section in toc}{fg=themecolor, bg=}
+\setbeamercolor{subsection in toc}{fg=black!60}
+\setbeamercolor{caption name}{fg=themecolor}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry journal}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+\setbeamercolor{bibliography item}{fg=themecolor}
+\setbeamercolor{itemize item}{fg=themecolor}
+\setbeamercolor{itemize subitem}{fg=themecolor}
+\setbeamercolor{itemize subsubitem}{fg=themecolor}
+\setbeamercolor{enumerate item}{fg=themecolor}
+\setbeamercolor{enumerate subitem}{fg=themecolor}
+\setbeamercolor{enumerate subsubitem}{fg=themecolor}
+
+% Typography and spacing.
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{framesubtitle}{size=\normalsize}
+\setbeamerfont{block title}{size=\large}
+\setbeamerfont{section in toc}{size=\large}
+\setbeamerfont{subsection in toc}{size=\normalsize}
+\setbeamerfont{caption name}{size=\normalsize}
+\setbeamerfont{caption}{size=\normalsize}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{description item}{size=\normalsize}
+\usefonttheme[onlymath]{serif}
+\setlength{\parskip}{0.5em}
+\AtBeginEnvironment{table}{\setlength{\parskip}{0em}}
+\normalem
+\addbibresource{reference.bib}
+
+% Footer with page numbers only.
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.25ex, dp=1ex, leftskip=0.5cm, rightskip=0.5cm]{title in head/foot}%
+    \hfill{\textcolor{black!60}{\insertframenumber/\inserttotalframenumber}}\hspace*{1mm}\vspace*{2mm}
+  \end{beamercolorbox}%
+}
+
+% Minimal title line plus institution logo.
+\defbeamertemplate*{frametitle}{}[1][]{
+  \nointerlineskip%
+  \vspace*{3mm}
+  \hspace*{-1mm}
+  \begin{beamercolorbox}[sep=0.3cm, wd=\paperwidth, leftskip=0.5cm, rightskip=0.5cm]{frametitle}
+    {\usebeamerfont{frametitle}\insertframetitle}
+    {\usebeamerfont{framesubtitle}\color{black!60}\insertframesubtitle
+    \hfill
+    \raisebox{-1mm}{\includegraphics[width=13mm]{\themelogopath}}
+    }\par
+    \vskip-1.5ex
+    \begin{tikzpicture}[remember picture, overlay]
+      \draw[line width=0.2pt] (0,0) -- (\textwidth+4mm,0);
+    \end{tikzpicture}
+  \end{beamercolorbox}
+  \vspace*{-7mm}
+}
+
+% Reusable commands.
+\newcommand{\makesection}[1][\sectionrulewidth]{
+    \begin{frame}[plain]
+        \centering
+        \vspace*{7mm}
+        \begin{tabular}{l}
+            {\color{themecolor}
+            \huge
+            \insertsectionnumber.\ \insertsection}\\
+            \begin{tikzpicture}
+                \fill[black!30] (0,0) rectangle (#1\textwidth, 1pt);
+                \fill[themecolor] (0,0) rectangle (#1\textwidth/2, 1pt);
+            \end{tikzpicture}
+        \end{tabular}
+    \end{frame}
+}
+
+\newcommand{\titlecolorbox}[1]{
+    \begin{tcolorbox}[colback=themecolor!8, colframe=themecolor, arc=1mm, boxrule=0.2pt, width=0.97\textwidth]
+        \color{themecolor} \LARGE \centering
+        #1
+    \end{tcolorbox}
+}
+
+\newcommand{\presentationmetadata}{
+    \begin{tabular}{>{\color{themecolor}}r@{\hspace{3pt}}l}
+        \presentationauthorlabel & \presentationauthor \\
+        \presentationadvisorlabel & \presentationadvisor \\
+        \ifstrempty{\presentationinstitution}{}{\presentationinstitutionlabel & \presentationinstitution \\}
+    \end{tabular}
+}
+
+\newcommand{\makeboxedcover}{
+    \begin{frame}[plain]
+        \centering
+        \vspace{13mm}
+        \titlecolorbox{\presentationtitle}
+
+        \vspace{7mm}
+        \presentationmetadata
+
+        \vspace{4mm}
+        \presentationdate
+    \end{frame}
+}
+
+\newcommand{\makelinecover}{
+    \begin{frame}[plain]
+        \setlength{\parskip}{0.2em}
+        \vspace{13mm}
+        {\color{themecolor}\huge
+        \presentationtitle
+        }
+
+        \begin{tikzpicture}
+            \fill[black!50] (0,0) rectangle (0.98\textwidth, 0.5pt);
+            \fill[themecolor] (0,0) rectangle (0.98\textwidth/2, 0.5pt);
+        \end{tikzpicture}
+
+        \vspace{7mm}
+        \presentationmetadata
+
+        \vspace{4mm}
+        \presentationdate
+    \end{frame}
+}
+
+\newcommand{\highlight}[1]{\textcolor{themecolor}{#1}}
+\newcommand{\ulhighlight}[1]{\textcolor{themecolor}{\color{themecolor}\uline{#1}}}
+\newcommand{\stronghighlight}[1]{\textcolor{stronghighlightcolor}{#1}}
+\newcommand{\ulstronghighlight}[1]{\textcolor{stronghighlightcolor}{\color{stronghighlightcolor}\uline{#1}}}
+
+\newtcolorbox{callout}[2][]{colback=white, colframe=themecolor,
+  fonttitle=\minimalistslidescallouttitlefont, title={\color{themecolor}\faLightbulb[regular]\ #2},
+  coltitle=black, colbacktitle=white, #1,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt, right=2pt, top=1pt, bottom=2pt,
+  boxsep=2pt,
+  titlerule=-1mm,
+}

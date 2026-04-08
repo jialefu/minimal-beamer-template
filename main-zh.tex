@@ -1,0 +1,346 @@
+\documentclass[8pt]{ctexbeamer}
+
+\usepackage[chinese]{minimalistslides}
+
+\setthemename{东南大学}
+\setthemelogo{figs/logo.jpg}
+
+% 项目信息：多数情况下只需要修改这一段。
+\renewcommand{\presentationtitle}{简约风格汇报答辩模板}
+\renewcommand{\presentationauthor}{张三}
+\renewcommand{\presentationadvisor}{李四}
+\renewcommand{\presentationinstitution}{\themename}
+\renewcommand{\presentationdate}{\today}
+
+\begin{document}
+
+% 这里保留了两种封面，可以按需要选择其中一种。
+\makeboxedcover
+\makelinecover
+
+\begin{frame}{目录}
+    \tableofcontents
+\end{frame}
+
+\section{模板介绍}
+
+\makesection
+
+\subsection{模板介绍及文件结构}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    本仓库提供了一套清新简约的 Beamer 汇报模板。中文版本基于 \lstinline|ctexbeamer|，英文版本基于 \lstinline|beamer|，但两者共享同一个样式包，方便统一维护与二次开发。
+
+    \begin{table}
+        \small
+        \renewcommand{\arraystretch}{1.4}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            文件路径 & 说明 \\
+            \midrule
+            \lstinline|main-zh.tex| & 中文示例文稿入口 \\
+            \lstinline|main-en.tex| & 英文示例文稿入口 \\
+            \lstinline|minimalistslides.sty| & 统一承载主题、布局和命令的样式包 \\
+            \lstinline|reference.bib| & 示例中使用的参考文献数据库 \\
+            \lstinline|figs/logo.jpg| & 页眉中展示的机构 logo \\
+            \lstinline|figs/example.jpg| & 示例图片素材 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+\subsection{模板使用准备工作}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+    \begin{block}{快速换肤路径}
+        \begin{enumerate}
+            \item 将你的学校或单位 logo 替换到 \lstinline|figs/logo.jpg|。
+            \item 修改 \lstinline|main-zh.tex| 顶部的标题、作者、导师和日期信息。
+            \item 如果需要调整主题色，可在文稿里使用 \lstinline|\setthemeprimaryrgb| 和 \lstinline|\setthemeaccentrgb|。
+            \item 如果只是做内容汇报，优先复用样式包，不必先改样式内部实现。
+        \end{enumerate}
+    \end{block}
+
+    \begin{callout}{组织方式}
+        现在中文和英文版本已经放在同一分支下，但各自保留独立入口文件；样式逻辑只维护一份，因此结构更清晰，也更适合开源仓库长期维护。
+    \end{callout}
+\end{frame}
+
+\subsection{编译方式}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+    \begin{block}{推荐命令}
+        仓库内置了 \lstinline|.latexmkrc|，推荐直接使用下面的命令编译中文版本。
+        \begin{lstlisting}[style=latex]
+latexmk -xelatex main-zh.tex
+        \end{lstlisting}
+    \end{block}
+
+    \begin{block}{手动编译}
+        如果希望手动执行，可以使用下面的顺序。
+        \begin{lstlisting}[style=latex]
+xelatex main-zh.tex
+bibtex main-zh
+xelatex main-zh.tex
+xelatex main-zh.tex
+        \end{lstlisting}
+    \end{block}
+\end{frame}
+
+\section{模板使用}
+
+\makesection
+
+\subsection{小节和目录}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{小节的使用}
+        \begin{enumerate}
+            \item 使用 \lstinline|\section{}| 和 \lstinline|\subsection{}| 可以组织整个汇报结构。
+            \item 在一个新的小节后使用 \lstinline|\makesection| 可以生成分节封面。
+            \item 如有需要，也可以使用 \lstinline|\makesection[0.5]| 调整横线长度。
+        \end{enumerate}
+    \end{block}
+
+    \begin{lstlisting}[style=latex]
+\section{实验设计}
+\subsection{数据与流程}
+\makesection
+    \end{lstlisting}
+
+    \begin{block}{目录页}
+        使用常规页面加 \lstinline|\tableofcontents| 即可生成目录页。
+    \end{block}
+
+\end{frame}
+
+\subsection{页面和块}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+    \begin{block}{页面的使用}
+        \begin{enumerate}
+            \item \lstinline|\begin{frame}{title}{subtitle}| 是最常用的写法。
+            \item \lstinline|\begin{frame}[plain]| 适合封面页或结束页。
+            \item \lstinline|\begin{frame}[fragile]| 适合包含代码块的页面。
+        \end{enumerate}
+    \end{block}
+
+    \begin{block}{块的使用}
+        一个普通内容块的写法如下。
+        \begin{lstlisting}[style=latex]
+\begin{block}{核心内容}
+    在这里写页面正文。
+\end{block}
+        \end{lstlisting}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+    \begin{block}{强调色块}
+        可以临时切换 \lstinline|themecolor|，让某个块承担提醒、强调或补充说明的作用。
+    \end{block}
+
+    \colorlet{themecolor}{themered}
+    \begin{block}{红色的块}
+        这是一个使用强调色的示例块。
+        \begin{lstlisting}[style=latex]
+\colorlet{themecolor}{themered}
+\begin{block}{红色的块}
+    ...
+\end{block}
+\colorlet{themecolor}{themegreen}
+        \end{lstlisting}
+    \end{block}
+    \colorlet{themecolor}{themegreen}
+
+\end{frame}
+
+\subsection{列表和强调}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+
+    \begin{block}{列表的使用}
+        \begin{itemize}
+            \item 模板提供了较轻量的无序列表样式。
+            \item 多层嵌套时仍然保持较好的可读性。
+            \begin{itemize}
+                \item 第一层子列表
+                \begin{itemize}
+                    \item 第二层子列表
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+
+        \begin{enumerate}
+            \item 有序列表适合表达步骤、流程和实验设置。
+            \item 嵌套层级会自动弱化视觉权重。
+        \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    可以像平常一样使用 \texttt{\textbackslash footnote\{\}}\footnote{这是一个脚注示例。} 插入脚注。下表展示了样式包中常用的一些强调命令。
+
+    \begin{table}
+        \small
+        \renewcommand{\arraystretch}{1.4}
+        \setlength{\tabcolsep}{2mm}
+        \begin{tabular}{llll}
+            \toprule
+            命令 & 效果 & 命令 & 效果 \\
+            \midrule
+            \lstinline|\textsf{}| & \textsf{无衬线} & \lstinline|\textbf{}| & \textbf{加粗} \\
+            \lstinline|\textrm{}| & \textrm{衬线} & \lstinline|\texttt{}| & \texttt{等宽} \\
+            \lstinline|\uline{}| & \uline{下划线} & \lstinline|\sout{}| & \sout{删除线} \\
+            \lstinline|\highlight{}| & \highlight{高亮} & \lstinline|\stronghighlight{}| & \stronghighlight{强调高亮} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \begin{myquote}
+        这个引用环境比较克制，也很适合拿来写旁注、提醒和审稿意见。
+    \end{myquote}
+
+\end{frame}
+
+\section{内容示例}
+
+\makesection
+
+\subsection{图片和表格}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{图片的使用}
+        普通的 \LaTeX{} 图片环境可以直接使用。
+        \begin{lstlisting}[style=latex]
+\begin{figure}
+    \centering
+    \includegraphics[width=0.55\textwidth]{figs/example.jpg}
+    \caption{图片示例}
+\end{figure}
+        \end{lstlisting}
+    \end{block}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth]{figs/example.jpg}
+        \caption{图片示例}
+        \label{fig:example}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{表格的使用}
+        \begin{lstlisting}[style=latex]
+\begin{table}
+    \centering
+    \caption{表格示例}
+    \begin{tabular}{cccc}
+        \toprule
+        第一列 & 第二列 & 第三列 & 第四列 \\
+        \midrule
+        ...
+    \end{tabular}
+\end{table}
+        \end{lstlisting}
+    \end{block}
+
+    \begin{table}
+        \centering
+        \caption{表格示例}
+        \label{tab:example}
+        \begin{tabular}{cccc}
+            \toprule
+            第一列 & 第二列 & 第三列 & 第四列 \\
+            \midrule
+            1 & 2 & 3 & 4 \\
+            5 & 6 & 7 & 8 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+\subsection{公式和代码块}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+    \label{frame:eq-and-code-zh}
+
+    \begin{block}{公式}
+        模板不会额外干扰数学环境，因此普通公式可以直接使用。
+        \begin{equation}
+            \label{eq:example-zh}
+            i\hbar\frac{\partial \psi}{\partial t}
+            = \frac{-\hbar^2}{2m} \left(
+            \frac{\partial^2}{\partial x^2}
+            + \frac{\partial^2}{\partial y^2}
+            + \frac{\partial^2}{\partial z^2}
+            \right) \psi + V\psi
+        \end{equation}
+    \end{block}
+
+    \begin{block}{代码块}
+        可以使用 \lstinline|\lstlisting| 插入多行代码，使用 \lstinline|\lstinline| 插入行内代码。
+        \begin{lstlisting}[style=python]
+def build_slides(title, author):
+    return {
+        "title": title,
+        "author": author,
+        "engine": "xelatex",
+    }
+        \end{lstlisting}
+    \end{block}
+\end{frame}
+
+\subsection{参考文献和引用}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{参考文献}
+        将文献信息保存在 \lstinline|reference.bib| 中即可按标准 BibLaTeX 方式使用。例如，Kopka 等人写过一本经典的 \LaTeX{} 入门书\footfullcite{kopka2003guide}。
+    \end{block}
+
+    \begin{block}{交叉引用}
+        图片、表格、公式和页面都可以继续使用标准的 \lstinline|\ref{}| 与 \lstinline|\pageref{}|。例如，我可以引用第 \pageref{frame:eq-and-code-zh} 页中的公式 (\ref{eq:example-zh})。
+    \end{block}
+
+    \begin{callout}{实践建议}
+        这套模板故意保持接近原生 Beamer 写法，因此后续扩展时不会被一层很厚的自定义宏包束缚住。
+    \end{callout}
+
+\end{frame}
+
+\section{总结}
+
+\makesection
+
+\subsection{总结}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+    \begin{block}{模板特点}
+        \begin{enumerate}
+            \item 视觉风格简洁，适合学术汇报、答辩和课程展示。
+            \item 换 logo、换主题色、改元信息的成本很低。
+            \item 中英文示例共用一套样式包，更利于维护与复用。
+        \end{enumerate}
+    \end{block}
+
+    \begin{block}{致谢}
+        本项目参考了 Elegant Slides 模板\footnote{\url{https://www.overleaf.com/latex/templates/elegant-slides/yfqyhpprvdmg}}，并将其整理为更克制、轻量的学术汇报工作流。
+    \end{block}
+\end{frame}
+
+\begin{frame}{参考文献}
+    \printbibliography
+\end{frame}
+
+\end{document}

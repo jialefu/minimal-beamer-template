@@ -1,0 +1,356 @@
+\documentclass[8pt]{beamer}
+
+\usepackage[english]{minimalistslides}
+
+\setthemename{Southeast University}
+\setthemelogo{figs/logo.jpg}
+
+% Project metadata: most users only need to update this block.
+\renewcommand{\presentationtitle}{Minimalist Academic Slides}
+\renewcommand{\presentationauthor}{Zhang San}
+\renewcommand{\presentationadvisor}{Li Si}
+\renewcommand{\presentationinstitution}{\themename}
+\renewcommand{\presentationdate}{\today}
+
+\begin{document}
+
+% Two cover styles are included so users can keep the one they prefer.
+\makeboxedcover
+\makelinecover
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{Getting Started}
+
+\makesection
+
+\subsection{What Is Included}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    This repository packages a clean \LaTeX{} Beamer workflow for academic presentations. The default theme is inspired by Southeast University, but the structure is intentionally lightweight so it can be rebranded quickly.
+
+    \begin{table}
+        \small
+        \renewcommand{\arraystretch}{1.4}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            File Path & Purpose \\
+            \midrule
+            \lstinline|main-en.tex| & English demo deck and authoring entry point \\
+            \lstinline|main-zh.tex| & Chinese demo deck on the same branch \\
+            \lstinline|minimalistslides.sty| & Shared package for theme, layout, and commands \\
+            \lstinline|reference.bib| & Bibliography entries used by the sample slides \\
+            \lstinline|figs/logo.jpg| & Institution logo shown in the frame header \\
+            \lstinline|figs/example.jpg| & Example image asset used in the demo \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+\subsection{Retheme in Minutes}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Fast customization path}
+        \begin{enumerate}
+            \item Replace \lstinline|figs/logo.jpg| with your organization logo.
+            \item Update the metadata block near the top of \lstinline|main-en.tex|.
+            \item Adjust the palette with \lstinline|\setthemeprimaryrgb| and \lstinline|\setthemeaccentrgb| if needed.
+            \item Reuse the same style package in your own deck instead of editing the package internals first.
+        \end{enumerate}
+    \end{block}
+
+    \begin{callout}{Why this structure works}
+        Theme behavior now lives in a single package, while language-specific content lives in separate entry files. That keeps customization easy without duplicating style logic.
+    \end{callout}
+
+\end{frame}
+
+\subsection{Build Workflow}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Recommended build command}
+        The repository includes a \lstinline|.latexmkrc| file, so a single command is enough for the full build loop.
+        \begin{lstlisting}[style=latex]
+latexmk -xelatex main-en.tex
+        \end{lstlisting}
+    \end{block}
+
+    \begin{block}{Manual compilation}
+        If you prefer explicit steps, use the following sequence.
+        \begin{lstlisting}[style=latex]
+xelatex main-en.tex
+bibtex main-en
+xelatex main-en.tex
+xelatex main-en.tex
+        \end{lstlisting}
+    \end{block}
+
+\end{frame}
+
+\section{Authoring Slides}
+
+\makesection
+
+\subsection{Sections and Outline Slides}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Sections}
+        \begin{enumerate}
+            \item Use \lstinline|\section{}| and \lstinline|\subsection{}| to organize your deck.
+            \item Use \lstinline|\makesection| after each new section if you want a divider slide.
+            \item Adjust the divider width with \lstinline|\makesection[0.5]| when needed.
+        \end{enumerate}
+    \end{block}
+
+    \begin{lstlisting}[style=latex]
+\section{Method}
+\subsection{Training Pipeline}
+\makesection
+    \end{lstlisting}
+
+    \begin{block}{Outline slide}
+        Use a regular frame with \lstinline|\tableofcontents| to generate the slide outline.
+    \end{block}
+
+\end{frame}
+
+\subsection{Frames and Reusable Blocks}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Frame types}
+        \begin{enumerate}
+            \item \lstinline|\begin{frame}{title}{subtitle}| is the default pattern.
+            \item \lstinline|\begin{frame}[plain]| is useful for cover or closing slides.
+            \item \lstinline|\begin{frame}[fragile]| is required when a slide contains code blocks.
+        \end{enumerate}
+    \end{block}
+
+    \begin{block}{Custom block}
+        A standard content block looks like this.
+        \begin{lstlisting}[style=latex]
+\begin{block}{Key Insight}
+    Put your main argument here.
+\end{block}
+        \end{lstlisting}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Accent blocks}
+        You can temporarily switch the semantic color to create contrast for warnings, emphasis, or side notes.
+    \end{block}
+
+    \colorlet{themecolor}{themered}
+    \begin{block}{Accent Example}
+        This block uses the accent color without changing the rest of the deck.
+        \begin{lstlisting}[style=latex]
+\colorlet{themecolor}{themered}
+\begin{block}{Accent Example}
+    ...
+\end{block}
+\colorlet{themecolor}{themegreen}
+        \end{lstlisting}
+    \end{block}
+    \colorlet{themecolor}{themegreen}
+
+\end{frame}
+
+\subsection{Lists and Text Emphasis}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+
+    \begin{block}{Lists}
+        \begin{itemize}
+            \item The theme keeps bullets minimal and color-coded.
+            \item Nested lists remain readable for dense academic material.
+            \begin{itemize}
+                \item First nested level
+                \begin{itemize}
+                    \item Second nested level
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+
+        \begin{enumerate}
+            \item Ordered lists are useful for procedures and experiments.
+            \item Nested enumerations inherit lighter visual weight.
+        \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    Footnotes are supported as usual with \texttt{\textbackslash footnote\{\}}\footnote{This is a sample footnote.}, and the table below summarizes a few useful emphasis helpers exposed by the theme.
+
+    \begin{table}
+        \small
+        \renewcommand{\arraystretch}{1.4}
+        \setlength{\tabcolsep}{2mm}
+        \begin{tabular}{llll}
+            \toprule
+            Command & Output & Command & Output \\
+            \midrule
+            \lstinline|\textsf{}| & \textsf{Sans-serif} & \lstinline|\textbf{}| & \textbf{Bold} \\
+            \lstinline|\textrm{}| & \textrm{Serif} & \lstinline|\texttt{}| & \texttt{Monospace} \\
+            \lstinline|\uline{}| & \uline{Underline} & \lstinline|\sout{}| & \sout{Strikethrough} \\
+            \lstinline|\highlight{}| & \highlight{Highlight} & \lstinline|\stronghighlight{}| & \stronghighlight{Strong highlight} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \begin{myquote}
+        This quotation environment is intentionally understated, so it also works well for notes, caveats, and reviewer feedback.
+    \end{myquote}
+
+\end{frame}
+
+\section{Content Examples}
+
+\makesection
+
+\subsection{Figures and Tables}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Figures}
+        Standard \LaTeX{} figures work without any custom wrapper.
+        \begin{lstlisting}[style=latex]
+\begin{figure}
+    \centering
+    \includegraphics[width=0.55\textwidth]{figs/example.jpg}
+    \caption{Example figure}
+\end{figure}
+        \end{lstlisting}
+    \end{block}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth]{figs/example.jpg}
+        \caption{Example figure}
+        \label{fig:example}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Tables}
+        \begin{lstlisting}[style=latex]
+\begin{table}
+    \centering
+    \caption{Sample table}
+    \begin{tabular}{cccc}
+        \toprule
+        Col 1 & Col 2 & Col 3 & Col 4 \\
+        \midrule
+        ...
+    \end{tabular}
+\end{table}
+        \end{lstlisting}
+    \end{block}
+
+    \begin{table}
+        \centering
+        \caption{Sample table}
+        \label{tab:example}
+        \begin{tabular}{cccc}
+            \toprule
+            Column 1 & Column 2 & Column 3 & Column 4 \\
+            \midrule
+            1 & 2 & 3 & 4 \\
+            5 & 6 & 7 & 8 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+\subsection{Math and Code}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+    \label{frame:math-and-code}
+
+    \begin{block}{Equations}
+        The theme stays out of the way so mathematical notation remains standard.
+        \begin{equation}
+            \label{eq:example}
+            i\hbar\frac{\partial \psi}{\partial t}
+            = \frac{-\hbar^2}{2m} \left(
+            \frac{\partial^2}{\partial x^2}
+            + \frac{\partial^2}{\partial y^2}
+            + \frac{\partial^2}{\partial z^2}
+            \right) \psi + V\psi
+        \end{equation}
+    \end{block}
+
+    \begin{block}{Code listings}
+        Use \lstinline|\lstlisting| for larger snippets and \lstinline|\lstinline| for inline examples.
+        \begin{lstlisting}[style=python]
+def build_slides(title, author):
+    return {
+        "title": title,
+        "author": author,
+        "engine": "xelatex",
+    }
+        \end{lstlisting}
+    \end{block}
+
+\end{frame}
+
+\subsection{References and Cross-References}
+
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+
+    \begin{block}{Bibliography}
+        Keep references in \lstinline|reference.bib| and cite them inline when needed. For example, Kopka et al. remain a classic introduction to \LaTeX{}\footfullcite{kopka2003guide}.
+    \end{block}
+
+    \begin{block}{Cross-references}
+        Figures, tables, equations, and frames can be linked with the standard \lstinline|\ref{}| and \lstinline|\pageref{}| commands. For example, equation (\ref{eq:example}) appears on page \pageref{frame:math-and-code}, and Figure \ref{fig:example} shows the sample image asset.
+    \end{block}
+
+    \begin{callout}{Practical note}
+        The repository intentionally sticks to familiar \LaTeX{} conventions, which makes it easy to extend without learning a large custom macro layer.
+    \end{callout}
+
+\end{frame}
+
+\section{Closing}
+
+\makesection
+
+\subsection{Summary}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+
+    \begin{block}{What this template optimizes for}
+        \begin{enumerate}
+            \item A clean visual style that works for talks, defenses, and course presentations.
+            \item A small customization surface for fast rebranding.
+            \item A reusable structure that remains close to standard Beamer authoring.
+        \end{enumerate}
+    \end{block}
+
+    \begin{block}{Acknowledgement}
+        This project builds on ideas from the Elegant Slides template\footnote{\url{https://www.overleaf.com/latex/templates/elegant-slides/yfqyhpprvdmg}} and adapts them into a more minimal academic workflow.
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{References}
+    \printbibliography
+\end{frame}
+
+\end{document}
