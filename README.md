@@ -1,4 +1,4 @@
-# Minimalist Slides
+# Minimal Beamer Template
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f.svg)
 ![Engine: XeLaTeX](https://img.shields.io/badge/Engine-XeLaTeX-0A7EA4.svg)
