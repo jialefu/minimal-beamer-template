@@ -5,342 +5,255 @@
 \setthemename{东南大学}
 \setthemelogo{figs/logo.jpg}
 
-% 项目信息：多数情况下只需要修改这一段。
-\renewcommand{\presentationtitle}{简约风格汇报答辩模板}
-\renewcommand{\presentationauthor}{张三}
-\renewcommand{\presentationadvisor}{李四}
-\renewcommand{\presentationinstitution}{\themename}
-\renewcommand{\presentationdate}{\today}
+\renewcommand{\presentationtitle}{大语言模型高效推理关键技术研究\\[1mm]\large 硕士学位论文开题答辩}
+\renewcommand{\presentationauthorlabel}{汇报人}
+\renewcommand{\presentationauthor}{付嘉乐}
+\renewcommand{\presentationinstitutionlabel}{单位}
+\renewcommand{\presentationinstitution}{东南大学}
+\renewcommand{\presentationdate}{2026年4月}
 
 \begin{document}
 
-% 这里保留了两种封面，可以按需要选择其中一种。
 \makeboxedcover
-\makelinecover
 
 \begin{frame}{目录}
     \tableofcontents
 \end{frame}
 
-\section{模板介绍}
+\section{研究背景}
 
-\makesection
-
-\subsection{模板介绍及文件结构}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-
-    本仓库提供了一套清新简约的 Beamer 汇报模板。中文版本基于 \lstinline|ctexbeamer|，英文版本基于 \lstinline|beamer|，但两者共享同一个样式包，方便统一维护与二次开发。
-
-    \begin{table}
-        \small
-        \renewcommand{\arraystretch}{1.4}
-        \centering
-        \begin{tabular}{ll}
-            \toprule
-            文件路径 & 说明 \\
-            \midrule
-            \lstinline|main-zh.tex| & 中文示例文稿入口 \\
-            \lstinline|main-en.tex| & 英文示例文稿入口 \\
-            \lstinline|minimalistslides.sty| & 统一承载主题、布局和命令的样式包 \\
-            \lstinline|reference.bib| & 示例中使用的参考文献数据库 \\
-            \lstinline|figs/logo.jpg| & 页眉中展示的机构 logo \\
-            \lstinline|figs/example.jpg| & 示例图片素材 \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
-
-\end{frame}
-
-\subsection{模板使用准备工作}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-    \begin{block}{快速换肤路径}
-        \begin{enumerate}
-            \item 将你的学校或单位 logo 替换到 \lstinline|figs/logo.jpg|。
-            \item 修改 \lstinline|main-zh.tex| 顶部的标题、作者、导师和日期信息。
-            \item 如果需要调整主题色，可在文稿里使用 \lstinline|\setthemeprimaryrgb| 和 \lstinline|\setthemeaccentrgb|。
-            \item 如果只是做内容汇报，优先复用样式包，不必先改样式内部实现。
-        \end{enumerate}
-    \end{block}
-
-    \begin{callout}{组织方式}
-        现在中文和英文版本已经放在同一分支下，但各自保留独立入口文件；样式逻辑只维护一份，因此结构更清晰，也更适合开源仓库长期维护。
-    \end{callout}
-\end{frame}
-
-\subsection{编译方式}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-    \begin{block}{推荐命令}
-        仓库内置了 \lstinline|.latexmkrc|，推荐直接使用下面的命令编译中文版本。
-        \begin{lstlisting}[style=latex]
-latexmk -xelatex main-zh.tex
-        \end{lstlisting}
-    \end{block}
-
-    \begin{block}{手动编译}
-        如果希望手动执行，可以使用下面的顺序。
-        \begin{lstlisting}[style=latex]
-xelatex main-zh.tex
-bibtex main-zh
-xelatex main-zh.tex
-xelatex main-zh.tex
-        \end{lstlisting}
-    \end{block}
-\end{frame}
-
-\section{模板使用}
-
-\makesection
-
-\subsection{小节和目录}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-
-    \begin{block}{小节的使用}
-        \begin{enumerate}
-            \item 使用 \lstinline|\section{}| 和 \lstinline|\subsection{}| 可以组织整个汇报结构。
-            \item 在一个新的小节后使用 \lstinline|\makesection| 可以生成分节封面。
-            \item 如有需要，也可以使用 \lstinline|\makesection[0.5]| 调整横线长度。
-        \end{enumerate}
-    \end{block}
-
-    \begin{lstlisting}[style=latex]
-\section{实验设计}
-\subsection{数据与流程}
-\makesection
-    \end{lstlisting}
-
-    \begin{block}{目录页}
-        使用常规页面加 \lstinline|\tableofcontents| 即可生成目录页。
-    \end{block}
-
-\end{frame}
-
-\subsection{页面和块}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-    \begin{block}{页面的使用}
-        \begin{enumerate}
-            \item \lstinline|\begin{frame}{title}{subtitle}| 是最常用的写法。
-            \item \lstinline|\begin{frame}[plain]| 适合封面页或结束页。
-            \item \lstinline|\begin{frame}[fragile]| 适合包含代码块的页面。
-        \end{enumerate}
-    \end{block}
-
-    \begin{block}{块的使用}
-        一个普通内容块的写法如下。
-        \begin{lstlisting}[style=latex]
-\begin{block}{核心内容}
-    在这里写页面正文。
-\end{block}
-        \end{lstlisting}
-    \end{block}
-\end{frame}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-    \begin{block}{强调色块}
-        可以临时切换 \lstinline|themecolor|，让某个块承担提醒、强调或补充说明的作用。
-    \end{block}
-
-    \colorlet{themecolor}{themered}
-    \begin{block}{红色的块}
-        这是一个使用强调色的示例块。
-        \begin{lstlisting}[style=latex]
-\colorlet{themecolor}{themered}
-\begin{block}{红色的块}
-    ...
-\end{block}
-\colorlet{themecolor}{themegreen}
-        \end{lstlisting}
-    \end{block}
-    \colorlet{themecolor}{themegreen}
-
-\end{frame}
-
-\subsection{列表和强调}
-
+\subsection{背景与问题提出}
 \begin{frame}{\insertsection}{\insertsubsection}
-
-    \begin{block}{列表的使用}
-        \begin{itemize}
-            \item 模板提供了较轻量的无序列表样式。
-            \item 多层嵌套时仍然保持较好的可读性。
+    \begin{columns}[T,onlytextwidth]
+        \column{0.48\textwidth}
+        \begin{block}{研究背景}
             \begin{itemize}
-                \item 第一层子列表
-                \begin{itemize}
-                    \item 第二层子列表
-                \end{itemize}
+                \item 大语言模型已广泛应用于代码生成、数学推理与文本摘要等任务。
+                \item 协同解码通过组合多个模型分布，通常可以提升生成质量与鲁棒性。
+                \item 典型组合方式包括加权集成、Contrastive Decoding、Decoding-Time Realignment 等。
             \end{itemize}
-        \end{itemize}
+        \end{block}
 
+        \begin{block}{核心矛盾}
+            质量提升依赖于多模型在每一步都参与预测，但这会显著增加推理延迟与算力开销。
+        \end{block}
+
+        \column{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{ref/ref1/cos/figs/cod.pdf}
+            \caption{协同解码在生成时融合多个模型分布。}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\subsection{核心挑战与研究价值}
+\begin{frame}{\insertsection}{\insertsubsection}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.5\textwidth}
+        \begin{block}{问题定义}
+            多模型顺序调用意味着生成一个 token 往往需要多次前向计算，协同解码容易从“高质量”变成“高成本”。
+        \end{block}
+
+        \begin{block}{研究价值}
+            本课题希望在\stronghighlight{不牺牲协同生成质量}的前提下，实现多模型推理加速，兼顾理论上的无损性与工程上的可部署性。
+        \end{block}
+
+        \column{0.46\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{ref/ref1/cos/figs/efficiency_challenge.pdf}
+            \caption{协同解码面临的效率瓶颈。}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\section{研究内容}
+
+\subsection{总体思路与核心科学问题}
+\begin{frame}{\insertsection}{\insertsubsection}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.52\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{ref/ref1/cos/figs/sd_overall.pdf}
+            \caption{推测解码的“先草拟后验证”范式。}
+        \end{figure}
+
+        \column{0.44\textwidth}
+        \begin{block}{总体思路}
+            以推测解码为切入口，将单模型的 proposal--verify 机制扩展到多模型协同解码场景。
+        \end{block}
+
+        \begin{block}{三个核心问题}
+            \begin{enumerate}
+                \item 协同分布如何参与验证并保持无损生成？
+                \item 多个模型如何动态切换提议者与验证者角色？
+                \item 该框架如何推广到 N 模型协同场景？
+            \end{enumerate}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\subsection{研究内容一：协同分布下的推测机制}
+\begin{frame}{\insertsection}{\insertsubsection}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.52\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{ref/ref1/cos/figs/ob1.pdf}
+            \caption{将协同分布纳入验证过程的初步方案。}
+        \end{figure}
+
+        \column{0.44\textwidth}
+        \begin{block}{研究目标}
+            将传统推测解码中“目标模型分布验证”扩展为“协同/集成分布验证”，使输出分布严格对齐标准协同解码。
+        \end{block}
+
+        \begin{equation*}
+            u \leq \min\left(1,\frac{\mathcal{C}(p(x_i), q(x_i))}{q(x_i)}\right)
+        \end{equation*}
+
+        \begin{block}{当前进展}
+            已形成初步算法框架，后续将围绕拒绝采样准则、无损性证明和 acceptance rate 下界继续完善理论分析。
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\subsection{研究内容二：动态验证与多模型推广}
+\begin{frame}{\insertsection}{\insertsubsection}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{ref/ref1/cos/figs/ob22.pdf}
+            \caption{交替提议框架示意图。}
+        \end{figure}
+
+        \column{0.46\textwidth}
+        \begin{block}{动态角色分配}
+            不固定“谁负责提议、谁负责验证”，而是依据上下文中的模型置信度与接受率，动态选择激活路径。
+        \end{block}
+
+        \begin{block}{多模型推广}
+            从双模型扩展到 N 模型时，重点关注：
+            \begin{itemize}
+                \item 不同模型 proposal length 的协调；
+                \item 加权集成场景下的加速比分析；
+                \item 最坏情况下不慢于标准协同解码的性质。
+            \end{itemize}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\subsection{研究方法与技术路线}
+\begin{frame}{\insertsection}{\insertsubsection}
+    \begin{block}{研究方法}
         \begin{enumerate}
-            \item 有序列表适合表达步骤、流程和实验设置。
-            \item 嵌套层级会自动弱化视觉权重。
+            \item \textbf{理论推导：}基于概率论与拒绝采样，推导协同分布下的接受--拒绝准则与无损性条件。
+            \item \textbf{算法实现：}在 HuggingFace / vLLM 框架上改造底层解码循环，构建多模型协同推测原型。
+            \item \textbf{实验验证：}在代码生成、数学推理、文本摘要等任务上评估质量保持与速度提升。
         \end{enumerate}
     \end{block}
 
+    \begin{block}{技术路线}
+        \begin{enumerate}
+            \item 复现标准协同解码与经典推测解码基线；
+            \item 完成协同分布验证、动态角色切换与 N 模型推广设计；
+            \item 引入 KV Cache 的 Lazy Synchronization / Forward Extend 机制，降低多模型切换带来的缓存维护开销。
+        \end{enumerate}
+    \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+\section{前期基础}
 
-    可以像平常一样使用 \texttt{\textbackslash footnote\{\}}\footnote{这是一个脚注示例。} 插入脚注。下表展示了样式包中常用的一些强调命令。
-
+\subsection{阶段性结果与前期验证}
+\begin{frame}{\insertsection}{\insertsubsection}
     \begin{table}
         \small
-        \renewcommand{\arraystretch}{1.4}
-        \setlength{\tabcolsep}{2mm}
-        \begin{tabular}{llll}
+        \centering
+        \renewcommand{\arraystretch}{1.25}
+        \setlength{\tabcolsep}{3.2mm}
+        \begin{tabular}{lccc}
             \toprule
-            命令 & 效果 & 命令 & 效果 \\
+            场景（代表性设置） & 并行实现 & 直接 SD & 阶段性结果 \\
             \midrule
-            \lstinline|\textsf{}| & \textsf{无衬线} & \lstinline|\textbf{}| & \textbf{加粗} \\
-            \lstinline|\textrm{}| & \textrm{衬线} & \lstinline|\texttt{}| & \texttt{等宽} \\
-            \lstinline|\uline{}| & \uline{下划线} & \lstinline|\sout{}| & \sout{删除线} \\
-            \lstinline|\highlight{}| & \highlight{高亮} & \lstinline|\stronghighlight{}| & \stronghighlight{强调高亮} \\
+            双模型 WE（Llama / Vicuna） & 0.69x--0.75x & 1.15x--1.27x & 1.41x--1.58x \\
+            三模型 WE（Qwen-1.5B） & 0.54x--0.82x & 0.92x--0.98x & 1.27x--1.85x \\
+            CD（Llama-3, $T=0$） & 0.40x--0.41x & 1.52x--2.04x & 1.61x--2.23x \\
             \bottomrule
         \end{tabular}
     \end{table}
+
+    \begin{block}{阶段性观察}
+        \begin{itemize}
+            \item 任务覆盖 HumanEval、GSM8K、MMLU、CNNDM 等代表性基准。
+            \item 初步结果表明：顺序协同虽能提升质量，但代价较高；简单并行实现未必更快。
+            \item 协同推测框架在代表性设置下展现出 1.4x--2.2x 的潜在加速收益，说明技术路线具备可行性。
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\subsection{个人研究基础与相关成果}
+\begin{frame}{\insertsection}{\insertsubsection}
+    \begin{block}{与本课题最直接相关的前期工作}
+        \textbf{ICML 2025}\\
+        \textit{Fast Large Language Model Collaborative Decoding via Speculation}\\
+        角色：第一作者；关联：直接支撑“协同解码 + 推测加速”的问题定义、方法设计与实验经验。
+    \end{block}
+
+    \begin{block}{相关研究积累}
+        \begin{itemize}
+            \item \textbf{ICLR 2026} \textit{Flatter Tokens are More Valuable for Speculative Draft Model Training}\\
+            关联：为推测解码中的 draft model 训练与 acceptance behavior 提供理解。
+            \item \textbf{ICLR 2026} \textit{$d^2$Cache: Accelerating Diffusion-Based LLMs via Dual Adaptive Caching}\\
+            关联：为缓存机制设计与高效推理系统优化提供方法借鉴。
+        \end{itemize}
+    \end{block}
 
     \begin{myquote}
-        这个引用环境比较克制，也很适合拿来写旁注、提醒和审稿意见。
+        更多成果可见：\texttt{jialefu.github.io/publications/}
     \end{myquote}
-
 \end{frame}
 
-\section{内容示例}
+\section{研究计划}
 
-\makesection
-
-\subsection{图片和表格}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-
-    \begin{block}{图片的使用}
-        普通的 \LaTeX{} 图片环境可以直接使用。
-        \begin{lstlisting}[style=latex]
-\begin{figure}
-    \centering
-    \includegraphics[width=0.55\textwidth]{figs/example.jpg}
-    \caption{图片示例}
-\end{figure}
-        \end{lstlisting}
-    \end{block}
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.45\textwidth]{figs/example.jpg}
-        \caption{图片示例}
-        \label{fig:example}
-    \end{figure}
-
-\end{frame}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-
-    \begin{block}{表格的使用}
-        \begin{lstlisting}[style=latex]
-\begin{table}
-    \centering
-    \caption{表格示例}
-    \begin{tabular}{cccc}
-        \toprule
-        第一列 & 第二列 & 第三列 & 第四列 \\
-        \midrule
-        ...
-    \end{tabular}
-\end{table}
-        \end{lstlisting}
-    \end{block}
-
-    \begin{table}
-        \centering
-        \caption{表格示例}
-        \label{tab:example}
-        \begin{tabular}{cccc}
-            \toprule
-            第一列 & 第二列 & 第三列 & 第四列 \\
-            \midrule
-            1 & 2 & 3 & 4 \\
-            5 & 6 & 7 & 8 \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
-
-\end{frame}
-
-\subsection{公式和代码块}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-    \label{frame:eq-and-code-zh}
-
-    \begin{block}{公式}
-        模板不会额外干扰数学环境，因此普通公式可以直接使用。
-        \begin{equation}
-            \label{eq:example-zh}
-            i\hbar\frac{\partial \psi}{\partial t}
-            = \frac{-\hbar^2}{2m} \left(
-            \frac{\partial^2}{\partial x^2}
-            + \frac{\partial^2}{\partial y^2}
-            + \frac{\partial^2}{\partial z^2}
-            \right) \psi + V\psi
-        \end{equation}
-    \end{block}
-
-    \begin{block}{代码块}
-        可以使用 \lstinline|\lstlisting| 插入多行代码，使用 \lstinline|\lstinline| 插入行内代码。
-        \begin{lstlisting}[style=python]
-def build_slides(title, author):
-    return {
-        "title": title,
-        "author": author,
-        "engine": "xelatex",
-    }
-        \end{lstlisting}
-    \end{block}
-\end{frame}
-
-\subsection{参考文献和引用}
-
-\begin{frame}[fragile]{\insertsection}{\insertsubsection}
-
-    \begin{block}{参考文献}
-        将文献信息保存在 \lstinline|reference.bib| 中即可按标准 BibLaTeX 方式使用。例如，Kopka 等人写过一本经典的 \LaTeX{} 入门书\footfullcite{kopka2003guide}。
-    \end{block}
-
-    \begin{block}{交叉引用}
-        图片、表格、公式和页面都可以继续使用标准的 \lstinline|\ref{}| 与 \lstinline|\pageref{}|。例如，我可以引用第 \pageref{frame:eq-and-code-zh} 页中的公式 (\ref{eq:example-zh})。
-    \end{block}
-
-    \begin{callout}{实践建议}
-        这套模板故意保持接近原生 Beamer 写法，因此后续扩展时不会被一层很厚的自定义宏包束缚住。
-    \end{callout}
-
-\end{frame}
-
-\section{总结}
-
-\makesection
-
-\subsection{总结}
-
+\subsection{研究计划、风险与预期成果}
 \begin{frame}{\insertsection}{\insertsubsection}
-    \begin{block}{模板特点}
-        \begin{enumerate}
-            \item 视觉风格简洁，适合学术汇报、答辩和课程展示。
-            \item 换 logo、换主题色、改元信息的成本很低。
-            \item 中英文示例共用一套样式包，更利于维护与复用。
-        \end{enumerate}
-    \end{block}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.5\textwidth}
+        \begin{block}{阶段安排}
+            \begin{table}
+                \small
+                \renewcommand{\arraystretch}{1.2}
+                \setlength{\tabcolsep}{2mm}
+                \begin{tabular}{p{0.24\textwidth}p{0.52\textwidth}}
+                    \toprule
+                    时间 & 主要任务 \\
+                    \midrule
+                    2026.04-06 & 完成文献梳理、基线复现与协同分布推导 \\
+                    2026.07-09 & 完成动态验证策略与 N 模型框架设计 \\
+                    2026.10-12 & 完成系统优化、消融实验与多任务评测 \\
+                    2027.01-03 & 整理论文与学位论文，完善开源代码 \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+        \end{block}
 
-    \begin{block}{致谢}
-        本项目参考了 Elegant Slides 模板\footnote{\url{https://www.overleaf.com/latex/templates/elegant-slides/yfqyhpprvdmg}}，并将其整理为更克制、轻量的学术汇报工作流。
-    \end{block}
-\end{frame}
+        \column{0.46\textwidth}
+        \begin{block}{关键风险与应对}
+            \textbf{风险：}多模型交替激活会带来 KV Cache 同步开销，可能抵消推测解码的加速收益。\\
+            \textbf{应对：}采用 Lazy Synchronization 与 Forward Extend，仅在模型重新激活时批量补齐缺失缓存。
+        \end{block}
 
-\begin{frame}{参考文献}
-    \printbibliography
+        \begin{block}{预期成果}
+            \begin{itemize}
+                \item 形成可扩展的协同推测解码算法框架；
+                \item 完成原型系统与核心代码整理；
+                \item 在阶段性实验基础上推进论文与学位论文写作。
+            \end{itemize}
+        \end{block}
+    \end{columns}
 \end{frame}
 
 \end{document}
